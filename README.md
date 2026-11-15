@@ -1,6 +1,10 @@
 # Token Radar
 
-A token launch radar for the make.fun bounty `token-radar-01`. It reads a sealed
+[![make.fun · token-radar-01](https://make.fun/badge/token-radar-01.svg)](https://make.fun/bounty/token-radar-01?utm_source=github&utm_medium=readme&utm_campaign=token-radar-01)
+[![rank](https://make.fun/badge/token-radar-01/zkriadycrypt/token-launcher-radar/rank.svg)](https://make.fun/bounty/token-radar-01/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=token-radar-01)
+[![reward](https://make.fun/badge/token-radar-01/zkriadycrypt/token-launcher-radar/reward.svg)](https://make.fun/bounty/token-radar-01?utm_source=github&utm_medium=readme&utm_campaign=token-radar-01)
+
+A token launch radar for the [make.fun](https://make.fun/bounty/token-radar-01) bounty `token-radar-01`. It reads a sealed
 DefiLlama protocol snapshot, ranks the protocols that record no token by an implied
 launch value, and hands in a static dashboard a reader can use to pick what to farm
 next — with a concrete farm plan for every protocol on the board.
