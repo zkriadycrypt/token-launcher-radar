@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token Radar — pre-token protocols ranked by implied value</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <div class="mark">◈</div>
+    <div>
+      <h1>Token Radar</h1>
+      <p class="sub">Pre-token protocols, ranked by what a launch would be worth — and how to farm each one.</p>
+    </div>
+  </div>
+  <dl class="stats" id="stats"></dl>
+</header>
+
+<section class="model" id="model">
+  <h2>How the value is scored</h2>
+  <p>Every row records <strong>no token</strong> in the snapshot — no market cap, no CoinGecko id, no symbol. A protocol that already trades is kept apart in the <a href="#live">Live tokens</a> list below, never ranked.</p>
+  <p class="formula">implied&nbsp;=&nbsp;TVL&nbsp;×&nbsp;category&nbsp;multiple&nbsp;×&nbsp;growth&nbsp;×&nbsp;maturity</p>
+  <ul>
+    <li><strong>Category multiple</strong> — the median market-cap-to-TVL of the protocols in the same category that already trade, computed from this snapshot (a thin category falls back to the overall median, clamped 0.05–2.0).</li>
+    <li><strong>Growth</strong> — the 7-day TVL change, clamped to −60%…+120%, weighted at 0.5.</li>
+    <li><strong>Maturity</strong> — 0.6 plus up to 0.4 for up to three years listed with no token recorded.</li>
+  </ul>
+  <p class="note">Implied value is this radar's own claim from the snapshot's figures, never a prediction that a token will be issued or when. Data: DefiLlama snapshot, <span id="asof"></span>.</p>
+</section>
+
+<section class="controls" aria-label="Filters">
+  <input id="q" type="search" placeholder="Search name or slug…" aria-label="Search">
+  <select id="cat" aria-label="Category"><option value="">All categories</option></select>
+  <select id="chain" aria-label="Chain"><option value="">All chains</option></select>
+  <select id="minTvl" aria-label="Minimum TVL">
+    <option value="0">Any TVL</option>
+    <option value="10000000">TVL ≥ $10M</option>
+    <option value="50000000">TVL ≥ $50M</option>
+    <option value="100000000">TVL ≥ $100M</option>
+    <option value="500000000">TVL ≥ $500M</option>
+  </select>
+  <label class="wl"><input id="wlOnly" type="checkbox"> Watchlist only</label>
+  <span class="count" id="count"></span>
+</section>
+
+<main>
+  <table id="board">
+    <thead>
+      <tr>
+        <th data-sort="rank" class="num">Rank</th>
+        <th data-sort="name">Protocol</th>
+        <th data-sort="category">Category</th>
+        <th data-sort="chains">Chains</th>
+        <th data-sort="tvl_usd" class="num">TVL</th>
+        <th data-sort="change_7d" class="num">7d</th>
+        <th data-sort="implied_value_usd" class="num">Implied value</th>
+      </tr>
+    </thead>
+    <tbody id="rows"></tbody>
+  </table>
+  <p class="empty" id="empty" hidden>No protocol matches these filters.</p>
+</main>
+
+<section class="live" id="live">
+  <h2>Live tokens — already trading, not ranked</h2>
+  <p>These protocols record a token that already trades, so the board shows the market's own value for them, never a model's. They are here so the separation is visible.</p>
+  <ol id="liveList"></ol>
+</section>
+
+<footer>
+  <p>Token Radar · model <span id="modelVer"></span> · snapshot <span id="asof2"></span> · The board ranks protocols that record no token; a record is not proof a token does not exist. Farm steps are this radar's own plan, not financial advice.</p>
+</footer>
+
+<div class="modal" id="modal" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="dName">
+    <button class="close" id="closeBtn" aria-label="Close">✕</button>
+    <div id="detail"></div>
+  </div>
+</div>
+
+<script src="../data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
